@@ -18,8 +18,8 @@ async function bootstrap() {
   app.enableCors();
 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Intellectual API')
-    .setDescription('Backend API for the Intellectual daily fact learning app')
+    .setTitle('WishyFox API')
+    .setDescription('Backend API for WishyFox')
     .setVersion('1.0')
     .addApiKey(
       { type: 'apiKey', name: 'X-Device-ID', in: 'header' },
@@ -40,7 +40,7 @@ async function bootstrap() {
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
-  console.log(`Intellectual API running on port ${port}`);
+  console.log(`WishyFox API running on port ${port}`);
   console.log(`Swagger docs available at http://localhost:${port}/docs`);
 }
 bootstrap();
