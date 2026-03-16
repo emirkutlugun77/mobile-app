@@ -50,11 +50,11 @@ import { ProgressModule } from './modules/progress/progress.module';
 
         return {
           ...baseOptions,
-          host: config.get('DATABASE_HOST', 'localhost'),
+          host: config.get<string>('DATABASE_HOST', 'localhost'),
           port: config.get<number>('DATABASE_PORT', 5432),
-          username: config.get('DATABASE_USERNAME', 'postgres'),
-          password: config.get('DATABASE_PASSWORD', 'postgres'),
-          database: config.get('DATABASE_NAME', 'intellectual'),
+          username: config.get<string>('DATABASE_USERNAME', 'postgres'),
+          password: config.get<string>('DATABASE_PASSWORD', 'postgres'),
+          database: config.get<string>('DATABASE_NAME', 'intellectual'),
         };
       },
     }),
