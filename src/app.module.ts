@@ -22,7 +22,7 @@ import { ProgressModule } from './modules/progress/progress.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        const databaseUrl = config.get<string>('DATABASE_URL');
+        const databaseUrl = config.get<string>('DATABASE_PUBLIC_URL');
         const isProduction = config.get('NODE_ENV') === 'production';
 
         const baseOptions = {
@@ -50,11 +50,11 @@ import { ProgressModule } from './modules/progress/progress.module';
 
         return {
           ...baseOptions,
-          host: config.get<string>('DATABASE_HOST', 'localhost'),
-          port: config.get<number>('DATABASE_PORT', 5432),
-          username: config.get<string>('DATABASE_USERNAME', 'postgres'),
-          password: config.get<string>('DATABASE_PASSWORD', 'postgres'),
-          database: config.get<string>('DATABASE_NAME', 'intellectual'),
+          host: config.get<string>('PGHOST') || config.get<string>('DATABASE_HOST', 'localhost'),
+          port: config.get<number>('PGPORT') || config.get<number>('DATABASE_PORT', 5432),
+          username: config.get<string>('PGUSER') || config.get<string>('DATABASE_USERNAME', 'postgres'),
+          password: config.get<string>('PGPASSWORD') || config.get<string>('DATABASE_PASSWORD', 'postgres'),
+          database: config.get<string>('PGDATABASE') || config.get<string>('DATABASE_NAME', 'intellectual'),
         };
       },
     }),
